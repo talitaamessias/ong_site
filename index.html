@@ -5,85 +5,139 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Plataforma para ONGs: missão, projetos, transparência e contato." />
   <title>ONG Exemplo — Início</title>
-  <link rel="stylesheet" href="assets/css/styles.css" />
+  
+  <link rel="stylesheet" href="assets/css/variables.css"/>
+  <link rel="stylesheet" href="assets/css/base.css"/>
+  <link rel="stylesheet" href="assets/css/layout.css"/>
+  <link rel="stylesheet" href="assets/css/components.css"/>
+  <link rel="stylesheet" href="assets/css/utilities.css"/>
+
 </head>
-<body>
+<body class="fade-in">
+  
   <header class="site-header" role="banner">
     <div class="container navbar">
       <div class="logo">ONG Exemplo</div>
-      <nav role="navigation" aria-label="Menu principal">
-        <a href="index.html" aria-current="page">Início</a>
-        <a href="projetos.html">Projetos</a>
-        <a href="cadastro.html">Cadastro</a>
+      <nav role="navigation" aria-label="Menu principal" class="desktop-nav">
+        <ul>
+          <li><a href="index.html" aria-current="page">Início</a></li>
+          <li class="nav-item">
+            <a href="projetos.html">Projetos</a>
+            <div class="dropdown glass" role="menu" aria-label="submenu de projetos">
+              <a href="projetos.html#educacao">Educação</a>
+              <a href="projetos.html#cultura">Cultura</a>
+              <a href="projetos.html#emprego">Empregabilidade</a>
+            </div>
+          </li>
+          <li><a href="cadastro.html">Cadastro</a></li>
+          <li><a href="#" data-modal="open">Transparência</a></li>
+        </ul>
       </nav>
+      <button class="hamburger" aria-label="Abrir menu móvel">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-drawer" aria-hidden="true">
+      <a href="index.html">Início</a>
+      <a href="projetos.html">Projetos</a>
+      <a href="cadastro.html">Cadastro</a>
+      <a href="#" data-modal="open">Transparência</a>
     </div>
   </header>
 
-  <main id="conteudo">
-    <section class="hero" role="region" aria-label="Destaque">
+  <!-- Modal -->
+  <div class="modal-backdrop" role="dialog" aria-modal="true" aria-label="Relatórios de Transparência">
+    <div class="modal">
+      <header>
+        <h3>Relatórios de Transparência</h3>
+        <button class="btn-ghost" data-modal="close" aria-label="Fechar">✕</button>
+      </header>
+      <p class="text-muted">Acesse nossos relatórios de auditoria e impactos anuais (simulado).</p>
+      <div class="mt-2">
+        <a class="button-outline" href="#">Relatório 2023</a>
+        <a class="button-outline" href="#">Relatório 2024</a>
+      </div>
+      <div class="mt-3 text-right">
+        <button class="button" data-modal="close">Fechar</button>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <section class="hero">
       <div class="container">
+        <div class="kicker">Impacto Social Real</div>
         <h1>Missão, Visão e Valores</h1>
-        <p>Promovemos impacto social por meio de projetos que ampliam oportunidades, fortalecem comunidades e garantem transparência a doadores e voluntários.</p>
-        <p><a class="button" href="projetos.html">Conheça nossos projetos</a></p>
-      </div>
-    </section>
-
-    <section class="container" role="region" aria-labelledby="sobre-title">
-      <h2 id="sobre-title">Sobre a Organização</h2>
-      <p class="section-lead">Atuamos desde 2010 com educação, cultura e inclusão. Nossa atuação prioriza responsabilidade, transparência e governança.</p>
-      <div class="grid grid-3">
-        <article class="card">
-          <h3>Histórico</h3>
-          <p>Mais de 50 iniciativas apoiadas em 12 estados do Brasil, com foco em resultados mensuráveis e relato de impacto anual.</p>
-        </article>
-        <article class="card">
-          <h3>Equipe</h3>
-          <p>Profissionais e voluntários qualificados, com conselho fiscal e administrativo independentes.</p>
-        </article>
-        <article class="card">
-          <h3>Transparência</h3>
-          <p>Publicamos relatórios e prestações de contas periódicas com métricas de impacto e uso de recursos.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="container" role="region" aria-labelledby="galeria-title">
-      <h2 id="galeria-title">Galeria de Atividades</h2>
-      <div class="grid grid-3">
-        <figure class="card">
-          <img src="assets/img/hero.jpg" alt="Equipe da ONG em atividade comunitária" class="responsive" />
-          <figcaption class="helper">Ação comunitária no bairro São José.</figcaption>
-        </figure>
-        <figure class="card">
-          <img src="assets/img/projetos.jpg" alt="Apresentação de projeto social" class="responsive" />
-          <figcaption class="helper">Apresentação de resultados de projeto educativo.</figcaption>
-        </figure>
-        <figure class="card">
-          <img src="assets/img/voluntarios.jpg" alt="Voluntários em atividade" class="responsive" />
-          <figcaption class="helper">Voluntariado com jovens aprendizes.</figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <section class="container" role="region" aria-labelledby="contato-title">
-      <h2 id="contato-title">Contato</h2>
-      <div class="grid grid-2">
-        <div class="card">
-          <h3>Fale Conosco</h3>
-          <p>E-mail: contato@ongexemplo.org<br/>Telefone: (11) 3333-0000<br/>Endereço: Rua Exemplo, 123 — São Paulo/SP</p>
-          <p><a class="button" href="cadastro.html">Quero ser voluntário(a)</a></p>
+        <p>Com governança, transparência e tecnologia, conectamos doadores, voluntários e projetos que mudam vidas.</p>
+        <div class="hero-cta">
+          <a class="button" href="projetos.html">Ver Projetos</a>
+          <a class="button-outline" href="cadastro.html">Quero ser voluntário(a)</a>
         </div>
-        <figure class="card">
-          <img src="assets/img/doacoes.jpg" alt="Imagem ilustrativa de doações e transparência" class="responsive" />
-          <figcaption class="helper">Transparência e prestação de contas.</figcaption>
-        </figure>
+      </div>
+    </section>
+
+    <section>
+      <div class="container grid grid-12">
+        <div class="col-4 col-md-6 col-sm-12">
+          <article class="card grow">
+            <h3>Histórico</h3>
+            <p>50+ iniciativas apoiadas em 12 estados do Brasil.</p>
+            <div class="badges mt-2">
+              <span class="badge">2010+</span><span class="badge tag-primary">ESG</span>
+            </div>
+          </article>
+        </div>
+        <div class="col-4 col-md-6 col-sm-12">
+          <article class="card grow">
+            <h3>Equipe</h3>
+            <p>Profissionais e voluntários qualificados com conselho independente.</p>
+            <div class="badges mt-2">
+              <span class="badge">Conselho</span><span class="badge">Auditoria</span>
+            </div>
+          </article>
+        </div>
+        <div class="col-4 col-md-12 col-sm-12">
+          <article class="card grow">
+            <h3>Transparência</h3>
+            <p>Relatórios periódicos de impacto e prestação de contas.</p>
+            <div class="mt-2">
+              <a class="button" href="#" data-modal="open">Ver Relatórios</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container grid grid-12">
+        <div class="col-6 col-sm-12">
+          <figure class="card glass grow">
+            <img src="assets/img/hero.jpg" alt="Equipe da ONG em ação comunitária">
+            <figcaption class="small">Ação comunitária — bairros periféricos.</figcaption>
+          </figure>
+        </div>
+        <div class="col-6 col-sm-12">
+          <figure class="card glass grow">
+            <img src="assets/img/voluntarios.jpg" alt="Voluntários em atividade">
+            <figcaption class="small">Rede de voluntariado ativa.</figcaption>
+          </figure>
+        </div>
       </div>
     </section>
   </main>
-
+  
   <footer role="contentinfo">
-    <div class="container">© 2025 ONG Exemplo — CNPJ 00.000.000/0001-00 — Todos os direitos reservados.</div>
+    <div class="container flex items-center justify-between">
+      <p>© 2025 ONG Exemplo — Transparência e impacto.</p>
+      <div class="badges">
+        <span class="badge tag-primary">WCAG 2.1 AA</span>
+        <span class="badge">Mobile‑first</span>
+        <span class="badge">Grid 12 col</span>
+      </div>
+    </div>
   </footer>
+  <div class="toast" role="status" aria-live="polite"></div>
   <script src="assets/js/main.js" defer></script>
+
 </body>
 </html>
