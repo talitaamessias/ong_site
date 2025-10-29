@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Cadastro de voluntários e interessados em doar." />
+  <title>ONG Exemplo — Cadastro</title>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <header class="site-header" role="banner">
+    <div class="container navbar">
+      <div class="logo">ONG Exemplo</div>
+      <nav role="navigation" aria-label="Menu principal">
+        <a href="index.html">Início</a>
+        <a href="projetos.html">Projetos</a>
+        <a href="cadastro.html" aria-current="page">Cadastro</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo" class="container" style="padding-top:1.5rem">
+    <h1>Cadastro</h1>
+
+    <figure class="card">
+      <img src="assets/img/cadastro.jpg" alt="Imagem representando inscrição de voluntários" class="responsive" />
+      <figcaption class="helper">Participe como voluntário(a) ou apoiador(a).</figcaption>
+    </figure>
+
+    <p class="section-lead">Preencha o formulário abaixo para se cadastrar como voluntário(a) ou apoiador(a). Campos marcados com * são obrigatórios.</p>
+
+    <form id="cadastro" action="#" method="post" novalidate>
+      <fieldset class="card">
+        <legend style="font-weight:700">Dados Pessoais</legend>
+
+        <div class="field">
+          <label for="nome" class="required">Nome Completo</label>
+          <input id="nome" name="nome" type="text" placeholder="Seu nome completo" required autocomplete="name">
+        </div>
+
+        <div class="field">
+          <label for="email" class="required">E-mail</label>
+          <input id="email" name="email" type="email" placeholder="voce@exemplo.com" required autocomplete="email">
+        </div>
+
+        <div class="field">
+          <label for="cpf" class="required">CPF</label>
+          <input id="cpf" name="cpf" type="text" inputmode="numeric" placeholder="000.000.000-00" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" required>
+          <div class="helper">Formato: 000.000.000-00</div>
+        </div>
+
+        <div class="field">
+          <label for="telefone" class="required">Telefone</label>
+          <input id="telefone" name="telefone" type="tel" inputmode="tel" placeholder="(00) 00000-0000" pattern="\(\d{2}\) \d{5}-\d{4}" required>
+          <div class="helper">Formato: (00) 00000-0000</div>
+        </div>
+
+        <div class="grid grid-3">
+          <div class="field">
+            <label for="nascimento" class="required">Data de Nascimento</label>
+            <input id="nascimento" name="nascimento" type="date" required>
+          </div>
+          <div class="field">
+            <label for="cep" class="required">CEP</label>
+            <input id="cep" name="cep" type="text" inputmode="numeric" placeholder="00000-000" pattern="\d{5}-\d{3}" required>
+          </div>
+          <div class="field">
+            <label for="endereco" class="required">Endereço</label>
+            <input id="endereco" name="endereco" type="text" placeholder="Rua, número, complemento" required autocomplete="address-line1">
+          </div>
+        </div>
+
+        <div class="grid grid-2">
+          <div class="field">
+            <label for="cidade" class="required">Cidade</label>
+            <input id="cidade" name="cidade" type="text" required autocomplete="address-level2">
+          </div>
+          <div class="field">
+            <label for="estado" class="required">Estado</label>
+            <select id="estado" name="estado" required autocomplete="address-level1">
+              <option value="" selected disabled>Selecione</option>
+              <option>AC</option><option>AL</option><option>AP</option><option>AM</option>
+              <option>BA</option><option>CE</option><option>DF</option><option>ES</option>
+              <option>GO</option><option>MA</option><option>MT</option><option>MS</option>
+              <option>MG</option><option>PA</option><option>PB</option><option>PR</option>
+              <option>PE</option><option>PI</option><option>RJ</option><option>RN</option>
+              <option>RS</option><option>RO</option><option>RR</option><option>SC</option>
+              <option>SP</option><option>SE</option><option>TO</option>
+            </select>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="card">
+        <legend style="font-weight:700">Interesse</legend>
+        <div class="field">
+          <label for="area">Área de interesse</label>
+          <select id="area" name="area">
+            <option>Voluntariado</option>
+            <option>Doações</option>
+            <option>Parcerias</option>
+            <option>Outros</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="mensagem">Mensagem</label>
+          <textarea id="mensagem" name="mensagem" rows="4" placeholder="Conte um pouco sobre como deseja contribuir"></textarea>
+        </div>
+        <div class="field">
+          <label><input type="checkbox" required> Confirmo a veracidade das informações fornecidas.</label>
+        </div>
+      </fieldset>
+
+      <input type="submit" value="Enviar cadastro">
+    </form>
+  </main>
+
+  <footer role="contentinfo" style="margin-top:2rem">
+    <div class="container">© 2025 ONG Exemplo — Cadastro</div>
+  </footer>
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>
