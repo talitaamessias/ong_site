@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="ONG Exemplo — SPA interativa com validação e armazenamento local." />
   <title>ONG Exemplo — SPA</title>
+
+  <!-- CSS -->
   <link rel="stylesheet" href="assets/css/variables.css"/>
   <link rel="stylesheet" href="assets/css/base.css"/>
   <link rel="stylesheet" href="assets/css/layout.css"/>
@@ -12,78 +14,66 @@
   <link rel="stylesheet" href="assets/css/utilities.css"/>
 </head>
 <body class="fade-in">
-<header class="site-header" role="banner">
-  <div class="container navbar">
-    <div class="logo">ONG Exemplo</div>
-    <nav role="navigation" aria-label="Menu principal" class="desktop-nav">
-      <ul>
-        <li><a data-link href="#/" aria-current="page">Início</a></li>
-        <li class="nav-item">
-          <a data-link href="#/projetos">Projetos</a>
-          <div class="dropdown glass" role="menu" aria-label="submenu de projetos">
-            <a data-link href="#/projetos">Educação</a>
-            <a data-link href="#/projetos">Cultura</a>
-            <a data-link href="#/projetos">Empregabilidade</a>
-          </div>
-        </li>
-        <li><a data-link href="#/cadastro">Cadastro</a></li>
-        <li><a href="#" data-modal="open">Transparência</a></li>
-      </ul>
-    </nav>
-    <button class="hamburger" aria-label="Abrir menu móvel">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-  <div class="mobile-drawer" aria-hidden="true">
-    <a data-link href="#/">Início</a>
-    <a data-link href="#/projetos">Projetos</a>
-    <a data-link href="#/cadastro">Cadastro</a>
-    <a href="#" data-modal="open">Transparência</a>
-  </div>
-</header>
-
-<!-- Modal Transparência -->
-<div class="modal-backdrop" role="dialog" aria-modal="true" aria-label="Relatórios de Transparência">
-  <div class="modal card">
-    <header class="flex items-center justify-between">
-      <h3>Relatórios de Transparência</h3>
-      <button class="btn-ghost" data-modal="close" aria-label="Fechar">✕</button>
-    </header>
-    <p class="text-muted">Acesse nossos relatórios de auditoria e impactos anuais (simulado).</p>
-    <div class="mt-2">
-      <a class="button-outline" href="#">Relatório 2023</a>
-      <a class="button-outline" href="#">Relatório 2024</a>
+  <header class="site-header" role="banner">
+    <div class="container navbar">
+      <div class="logo">ONG Exemplo</div>
+      <nav role="navigation" aria-label="Menu principal" class="desktop-nav">
+        <ul>
+          <li><a data-link href="#/" aria-current="page">Início</a></li>
+          <li class="nav-item">
+            <a data-link href="#/projetos">Projetos</a>
+            <div class="dropdown glass" role="menu" aria-label="submenu de projetos">
+              <a data-link href="#/projetos">Educação</a>
+              <a data-link href="#/projetos">Cultura</a>
+              <a data-link href="#/projetos">Empregabilidade</a>
+            </div>
+          </li>
+          <li><a data-link href="#/cadastro">Cadastro</a></li>
+          <li><a href="#" data-modal="open">Transparência</a></li>
+        </ul>
+      </nav>
+      <button class="hamburger" aria-label="Abrir menu móvel">
+        <span></span><span></span><span></span>
+      </button>
     </div>
-    <div class="mt-3 text-right">
-      <button class="button" data-modal="close">Fechar</button>
+    <div class="mobile-drawer" aria-hidden="true">
+      <a data-link href="#/">Início</a>
+      <a data-link href="#/projetos">Projetos</a>
+      <a data-link href="#/cadastro">Cadastro</a>
+      <a href="#" data-modal="open">Transparência</a>
     </div>
-  </div>
-</div>
+  </header>
 
-<!-- ESSENCIAL: onde a SPA carrega as páginas -->
-<main id="app" class="fade-in" role="main">
-  <noscript>
-    <div class="container card" style="margin-top:16px">
-      <p>Habilite o JavaScript para utilizar a versão SPA. Enquanto isso, acesse as páginas estáticas anteriores.</p>
+  <!-- Modal Transparência -->
+  <div class="modal-backdrop" role="dialog" aria-modal="true" aria-label="Relatórios de Transparência" style="display:none"></div>
+
+  <!-- Onde a SPA renderiza -->
+  <main id="app" class="fade-in" role="main">
+    <noscript>
+      <div class="container card" style="margin-top:16px">
+        <p>Habilite o JavaScript para utilizar a versão SPA. Enquanto isso, acesse as páginas estáticas anteriores.</p>
+      </div>
+    </noscript>
+  </main>
+
+  <footer role="contentinfo">
+    <div class="container flex items-center justify-between">
+      <p>© 2025 ONG Exemplo — SPA Interativa.</p>
+      <div class="badges">
+        <span class="badge">WCAG 2.1 AA</span>
+        <span class="badge">Grid 12 col</span>
+        <span class="badge">SPA</span>
+      </div>
     </div>
-  </noscript>
-</main>
+  </footer>
 
-<footer role="contentinfo">
-  <div class="container flex items-center justify-between">
-    <p>© 2025 ONG Exemplo — SPA Interativa.</p>
-    <div class="badges">
-      <span class="badge">WCAG 2.1 AA</span>
-      <span class="badge">Grid 12 col</span>
-      <span class="badge">SPA</span>
-    </div>
-  </div>
-</footer>
+  <div class="toast" role="status" aria-live="polite"></div>
 
-<div class="toast" role="status" aria-live="polite"></div>
+  <!-- TESTE: se você ver “app.js carregado” no console, o módulo está ok -->
+  <script>console.log("app.js será carregado como módulo…");</script>
 
-<!-- ESSENCIAL: carrega o JavaScript -->
-<script type="module" src="assets/js/app.js"></script>
+  <!-- JS como módulo (caminho exato e minúsculo) -->
+  <script type="module" src="assets/js/app.js"></script>
 </body>
 </html>
-</html>
+
