@@ -3,77 +3,222 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="ONG Exemplo — SPA interativa com validação e armazenamento local." />
-  <title>ONG Exemplo — SPA</title>
-
-  <!-- CSS -->
-  <link rel="stylesheet" href="assets/css/variables.css"/>
-  <link rel="stylesheet" href="assets/css/base.css"/>
-  <link rel="stylesheet" href="assets/css/layout.css"/>
-  <link rel="stylesheet" href="assets/css/components.css"/>
-  <link rel="stylesheet" href="assets/css/utilities.css"/>
+  <title>ONG Exemplo — SPA (Fix Inline)</title>
+  <style>
+    /* estilo mínimo só p/ ver funcionando (mantém o visual escuro simples) */
+    :root{--bg:#0b1220;--surface:#0e1627;--border:#2a3550;--brand:#6366f1;--text:#e5e7eb}
+    *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,Segoe UI,Roboto,Arial}
+    .container{max-width:1100px;margin:0 auto;padding:0 16px}
+    header{position:sticky;top:0;background:#0d1425;border-bottom:1px solid var(--border)}
+    .navbar{display:flex;justify-content:space-between;align-items:center;padding:14px 0}
+    a{color:#dbeafe;text-decoration:none} a:hover{opacity:.9}
+    nav ul{display:flex;gap:10px;list-style:none;margin:0;padding:0}
+    nav a{padding:8px 10px;border-radius:10px} nav a:hover{background:#141d34}
+    .button{display:inline-block;background:linear-gradient(135deg,#6366f1,#06b6d4);color:#fff;padding:10px 14px;border-radius:12px;font-weight:700}
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px}
+    .grid{display:grid;gap:16px} .g12{grid-template-columns:repeat(12,1fr)}
+    .col-4{grid-column:span 4} .col-6{grid-column:span 6} .col-12{grid-column:span 12}
+    @media(max-width:900px){.col-md-12{grid-column:span 12}} @media(max-width:640px){.col-sm-12{grid-column:span 12}}
+    footer{margin-top:40px;border-top:1px solid var(--border);background:#0f192e}
+    .hero{padding:60px 0;border-bottom:1px solid var(--border)}
+    input,select,textarea{width:100%;padding:10px;border-radius:10px;border:1px solid var(--border);background:#0a1324;color:#e5e7eb}
+    .invalid{border-color:#ef4444} .ok{border-color:#22c55e}
+    .alert{margin-top:10px;padding:10px;border-radius:10px}
+    .danger{background:#2a1120;border:1px solid #5c1a35}
+    .success{background:#0f2a1b;border:1px solid #1f6f46}
+    .hamburger{display:none}@media(max-width:900px){nav ul{display:none}.hamburger{display:block;padding:8px 10px;border:1px solid var(--border);border-radius:10px}}
+    .drawer{display:none;position:fixed;inset:0 0 0 30%;background:#0a1324;border-left:1px solid var(--border);padding:18px}
+    .drawer.open{display:block}
+  </style>
 </head>
-<body class="fade-in">
-  <header class="site-header" role="banner">
+<body>
+  <header>
     <div class="container navbar">
-      <div class="logo">ONG Exemplo</div>
-      <nav role="navigation" aria-label="Menu principal" class="desktop-nav">
+      <div><strong>ONG Exemplo</strong></div>
+      <nav>
         <ul>
-          <li><a data-link href="#/" aria-current="page">Início</a></li>
-          <li class="nav-item">
-            <a data-link href="#/projetos">Projetos</a>
-            <div class="dropdown glass" role="menu" aria-label="submenu de projetos">
-              <a data-link href="#/projetos">Educação</a>
-              <a data-link href="#/projetos">Cultura</a>
-              <a data-link href="#/projetos">Empregabilidade</a>
-            </div>
-          </li>
+          <li><a data-link href="#/">Início</a></li>
+          <li><a data-link href="#/projetos">Projetos</a></li>
           <li><a data-link href="#/cadastro">Cadastro</a></li>
-          <li><a href="#" data-modal="open">Transparência</a></li>
         </ul>
       </nav>
-      <button class="hamburger" aria-label="Abrir menu móvel">
-        <span></span><span></span><span></span>
-      </button>
+      <button class="hamburger" id="btn-burger">☰</button>
     </div>
-    <div class="mobile-drawer" aria-hidden="true">
-      <a data-link href="#/">Início</a>
-      <a data-link href="#/projetos">Projetos</a>
-      <a data-link href="#/cadastro">Cadastro</a>
-      <a href="#" data-modal="open">Transparência</a>
+    <div class="drawer" id="drawer">
+      <p><a data-link href="#/">Início</a></p>
+      <p><a data-link href="#/projetos">Projetos</a></p>
+      <p><a data-link href="#/cadastro">Cadastro</a></p>
     </div>
   </header>
 
-  <!-- Modal Transparência -->
-  <div class="modal-backdrop" role="dialog" aria-modal="true" aria-label="Relatórios de Transparência" style="display:none"></div>
+  <main id="app"></main>
 
-  <!-- Onde a SPA renderiza -->
-  <main id="app" class="fade-in" role="main">
-    <noscript>
-      <div class="container card" style="margin-top:16px">
-        <p>Habilite o JavaScript para utilizar a versão SPA. Enquanto isso, acesse as páginas estáticas anteriores.</p>
-      </div>
-    </noscript>
-  </main>
-
-  <footer role="contentinfo">
-    <div class="container flex items-center justify-between">
-      <p>© 2025 ONG Exemplo — SPA Interativa.</p>
-      <div class="badges">
-        <span class="badge">WCAG 2.1 AA</span>
-        <span class="badge">Grid 12 col</span>
-        <span class="badge">SPA</span>
-      </div>
+  <footer>
+    <div class="container" style="padding:18px 0;display:flex;justify-content:space-between;align-items:center">
+      <small>© 2025 ONG Exemplo — SPA</small>
+      <span style="opacity:.8">SPA • Templates • Validação</span>
     </div>
   </footer>
 
-  <div class="toast" role="status" aria-live="polite"></div>
+  <script type="module">
+    /* -------- Router básico -------- */
+    const routes = new Map();
+    function mount(path, render){ routes.set(path, render); }
+    function getPath(){ return (location.hash || "#/").split("?")[0]; }
+    function render(){
+      const view = routes.get(getPath()) || routes.get("#/");
+      document.querySelector("#app").innerHTML = view();
+      window.scrollTo(0,0);
+      document.dispatchEvent(new CustomEvent("page:rendered", { detail:{ path:getPath() }}));
+    }
+    window.addEventListener("hashchange", render);
+    document.addEventListener("click", (e)=>{
+      const a = e.target.closest("a[data-link]");
+      if(!a) return;
+      e.preventDefault();
+      location.hash = a.getAttribute("href");
+    });
 
-  <!-- TESTE: se você ver “app.js carregado” no console, o módulo está ok -->
-  <script>console.log("app.js será carregado como módulo…");</script>
+    /* -------- Templates -------- */
+    const Home = () => `
+      <section class="hero">
+        <div class="container">
+          <h1>ONG Exemplo — Impacto que se move</h1>
+          <p>SPA com navegação instantânea e componentes interativos.</p>
+          <p style="margin-top:12px">
+            <a class="button" data-link href="#/projetos">Ver projetos</a>
+            &nbsp;
+            <a data-link href="#/cadastro">Quero ser voluntário(a)</a>
+          </p>
+        </div>
+      </section>
+      <section class="container" style="padding:24px 0">
+        <div class="grid g12">
+          <div class="card col-4 col-md-12">Histórico: 50+ iniciativas</div>
+          <div class="card col-4 col-md-12">Equipe qualificada</div>
+          <div class="card col-4 col-md-12">Transparência e relatórios</div>
+        </div>
+      </section>
+    `;
 
-  <!-- JS como módulo (caminho exato e minúsculo) -->
-  <script type="module" src="assets/js/app.js"></script>
+    const Projetos = () => `
+      <section class="container" style="padding:24px 0">
+        <h1>Projetos Sociais</h1>
+        <div class="grid g12" style="margin-top:12px">
+          <div class="card col-4 col-md-12"><strong>Educação</strong><br/>Capacitação tecnológica</div>
+          <div class="card col-4 col-md-12"><strong>Cultura</strong><br/>Oficinas artísticas</div>
+          <div class="card col-4 col-md-12"><strong>Empregabilidade</strong><br/>Mentorias e encaminhamento</div>
+        </div>
+        <p style="margin-top:16px">
+          <a class="button" href="#" id="btn-doar">Doar (simulado)</a>
+        </p>
+        <div id="toast" class="alert success" style="display:none;margin-top:12px">Obrigado pela doação! (simulação)</div>
+      </section>
+    `;
+
+    const Cadastro = () => `
+      <section class="container" style="padding:24px 0">
+        <h1>Cadastro</h1>
+        <div id="form-alert" class="alert danger" style="display:none"></div>
+        <form id="form">
+          <div class="grid g12">
+            <div class="col-6 col-md-12">
+              <label>Nome Completo</label>
+              <input id="nome" required placeholder="Seu nome completo" />
+            </div>
+            <div class="col-6 col-md-12">
+              <label>E-mail</label>
+              <input id="email" type="email" required placeholder="voce@exemplo.com" />
+            </div>
+            <div class="col-6 col-md-12">
+              <label>CPF</label>
+              <input id="cpf" required placeholder="000.000.000-00" />
+            </div>
+            <div class="col-6 col-md-12">
+              <label>Telefone</label>
+              <input id="tel" required placeholder="(00) 00000-0000" />
+            </div>
+            <div class="col-4 col-md-12">
+              <label>Nascimento</label>
+              <input id="nasc" type="date" required />
+            </div>
+            <div class="col-4 col-md-12">
+              <label>CEP</label>
+              <input id="cep" required placeholder="00000-000" />
+            </div>
+            <div class="col-4 col-md-12">
+              <label>UF</label>
+              <input id="uf" required placeholder="SP, RJ, MG..." />
+            </div>
+          </div>
+          <p style="margin-top:12px"><button class="button" type="submit">Enviar</button></p>
+        </form>
+      </section>
+    `;
+
+    /* -------- Validação simples p/ prova de vida -------- */
+    function validateForm(){
+      const alert = document.querySelector("#form-alert");
+      const nome = document.querySelector("#nome");
+      const email = document.querySelector("#email");
+      const cpf = document.querySelector("#cpf");
+      const tel = document.querySelector("#tel");
+      const nasc = document.querySelector("#nasc");
+      const cep = document.querySelector("#cep");
+      const uf = document.querySelector("#uf");
+
+      const errs = [];
+
+      function inv(el, ok){
+        el.classList.toggle("invalid", !ok);
+        el.classList.toggle("ok", ok);
+        return ok;
+      }
+
+      inv(nome, nome.value.trim().length>2) || errs.push("Nome inválido.");
+      inv(email, /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.value)) || errs.push("E-mail inválido.");
+      inv(cpf, /^\d{3}\.\d{3}\.\d{3}-\d{2}$/.test(cpf.value)) || errs.push("CPF no formato 000.000.000-00.");
+      inv(tel, /^\(\d{2}\)\s?\d{5}-\d{4}$/.test(tel.value)) || errs.push("Telefone no formato (00) 00000-0000.");
+      inv(nasc, !!nasc.value) || errs.push("Informe a data de nascimento.");
+      inv(cep, /^\d{5}-\d{3}$/.test(cep.value)) || errs.push("CEP no formato 00000-000.");
+      inv(uf, /^(AC|AL|AP|AM|BA|CE|DF|ES|GO|MA|MT|MS|MG|PA|PB|PR|PE|PI|RJ|RN|RS|RO|RR|SC|SP|SE|TO)$/.test(uf.value.toUpperCase())) || errs.push("UF inválida (ex.: SP).");
+
+      if(errs.length){
+        alert.style.display="block";
+        alert.className="alert danger";
+        alert.innerHTML = "<strong>Corrija:</strong><ul><li>"+errs.join("</li><li>")+"</li></ul>";
+        return false;
+      } else {
+        alert.style.display="block";
+        alert.className="alert success";
+        alert.textContent = "Cadastro válido! (simulação de envio)";
+        return true;
+      }
+    }
+
+    /* -------- Inicialização -------- */
+    mount("#/", Home);
+    mount("#/projetos", Projetos);
+    mount("#/cadastro", Cadastro);
+    render(); // primeira renderização
+
+    // UI básica (hambúrguer e ações)
+    document.getElementById("btn-burger")?.addEventListener("click", ()=>{
+      document.getElementById("drawer").classList.toggle("open");
+    });
+
+    // Comportamentos por página após render
+    document.addEventListener("page:rendered", ({detail})=>{
+      if(detail.path==="#/projetos"){
+        const btn = document.getElementById("btn-doar");
+        const toast = document.getElementById("toast");
+        btn?.addEventListener("click", (e)=>{ e.preventDefault(); if(toast){ toast.style.display="block"; setTimeout(()=> toast.style.display="none", 2000); }});
+      }
+      if(detail.path==="#/cadastro"){
+        const form = document.getElementById("form");
+        form?.addEventListener("submit", (e)=>{ e.preventDefault(); validateForm(); });
+      }
+    });
+  </script>
 </body>
 </html>
-
