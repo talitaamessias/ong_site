@@ -1,27 +1,30 @@
-import { Router } from "./modules/spa.js";
-import { HomeTemplate } from "./modules/templates.home.js";
-import { ProjetosTemplate } from "./modules/templates.projetos.js";
-import { CadastroTemplate } from "./modules/templates.cadastro.js";
-import { UI } from "./modules/ui.js";
-import { Validate } from "./modules/validate.js";
+<main id="app"></main>
+document.addEventListener("DOMContentLoaded", () => {
+  const routes = {
+    "/": "index.html",
+    "/projetos": "projetos.html",
+    "/cadastro": "cadastro.html"
+  };
 
-// monta a SPA no #app
-const outlet = document.querySelector("#app");
-if (outlet) {
-  Router.mount(outlet);
-  Router.add("#/", () => HomeTemplate());
-  Router.add("#/projetos", () => ProjetosTemplate());
-  Router.add("#/cadastro", () => CadastroTemplate());
-  Router.start();
-}
-
-// liga interações globais (hambúrguer, toast, modal)
-UI.bind();
-
-// quando a rota mudar para cadastro, liga a validação
-window.addEventListener("page:rendered", ({detail})=>{
-  if (detail?.path === "#/cadastro") {
-    const form = document.querySelector("form#cadastro");
-    if (form) Validate.bindForm(form);
+  function loadPage(path) {
+    const page = routes[path] || "index.html";
+    fetch(page)
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("app").innerHTML = html;
+        window.scrollTo(0, 0);
+      })
+      .catch(() => {
+        document.getElementById("app").innerHTML = "<h2>Página não encontrada</h2>";
+      });
   }
+
+  // inicializa
+  loadPage(location.hash.slice(1) || "/");
+
+  // navegação hash
+  window.addEventListener("hashchange", () => {
+    const hash = location.hash.slice(1);
+    loadPage(hash || "/");
+  });
 });
