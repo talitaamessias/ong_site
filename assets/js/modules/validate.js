@@ -1,1 +1,73 @@
-export const Validate=(()=>{function e(e){return(e||"").replace(/\D/g,"")}function t(e){return/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(e||"")}function n(t){const n=e(t);return n.replace(/^(\d{3})(\d{3})(\d{3})(\d{0,2}).*/,((e,t,n,a,r)=>r?`${t}.${n}.${a}-${r}`:`${t}.${n}.${a}`))}function a(t){const n=e(t);return n.replace(/^(\d{2})(\d{5})(\d{0,4}).*/,((e,t,n,a)=>a?`(${t}) ${n}-${a}`:`(${t}) ${n}`))}function r(t){const n=e(t);return n.replace(/^(\d{5})(\d{0,3}).*/,((e,t,n)=>n?`${t}-${n}`:t))}function o(t){const n=e(t);if(!n||11!==n.length||/^(\d)\1+$/.test(n))return!1;let a=0;for(let e=0;e<9;e++)a+=parseInt(n[e])*(10-e);let r=10*a%11;10===r&&(r=0);if(r!==parseInt(n[9]))return!1;a=0;for(let e=0;e<10;e++)a+=parseInt(n[e])*(11-e);let o=10*a%11;return 10===o&&(o=0),o===parseInt(n[10])}function s(e){return/^\(\d{2}\) \d{5}-\d{4}$/.test(e||"")}function i(e){return/^\d{5}-\d{3}$/.test(e||"")}function d(e){if(!e)return!1;const t=new Date(e);if(isNaN(t))return!1;const n=new Date;let a=n.getFullYear()-t.getFullYear();const r=n.getMonth()-t.getMonth();return(r<0||0===r&&n.getDate()<t.getDate())&&a--,a>=16}const l=new Set(["AC","AL","AP","AM","BA","CE","DF","ES","GO","MA","MT","MS","MG","PA","PB","PR","PE","PI","RJ","RN","RS","RO","RR","SC","SP","SE","TO"]);return{bindForm:function(c){const u=document.querySelector("#form-alert"),m={nome:c.querySelector("#nome"),email:c.querySelector("#email"),cpf:c.querySelector("#cpf"),telefone:c.querySelector("#telefone"),nascimento:c.querySelector("#nascimento"),cep:c.querySelector("#cep"),endereco:c.querySelector("#endereco"),cidade:c.querySelector("#cidade"),estado:c.querySelector("#estado"),termos:c.querySelector("#termos")};m.cpf&&m.cpf.addEventListener("input",(e=>e.target.value=n(e.target.value))),m.telefone&&m.telefone.addEventListener("input",(e=>e.target.value=a(e.target.value))),m.cep&&m.cep.addEventListener("input",(e=>e.target.value=r(e.target.value)));function p(e,t){const n=c.querySelector(`[data-error-for="${e}"]`),a=m[e];n&&(n.textContent=t||""),a&&(a.classList.toggle("is-invalid",!!t),a.classList.toggle("is-valid",!t&&""!==a.value.trim()))}function v(){const n=[];m.nome.value.trim()?p("nome",""):(n.push("Informe o nome completo."),p("nome","Campo obrigatório.")),t(m.email.value)?p("email",""):(n.push("E-mail inválido."),p("email","Formato inválido (ex.: nome@dominio.com).")),o(m.cpf.value)?p("cpf",""):(n.push("CPF inválido."),p("cpf","CPF não passou na verificação.")),s(m.telefone.value)?p("telefone",""):(n.push("Telefone inválido."),p("telefone","Use (00) 00000-0000.")),d(m.nascimento.value)?p("nascimento",""):(n.push("Idade mínima: 16 anos."),p("nascimento","Idade mínima: 16 anos.")),i(m.cep.value)?p("cep",""):(n.push("CEP inválido."),p("cep","Use 00000-000.")),m.endereco.value.trim()?p("endereco",""):(n.push("Endereço é obrigatório."),p("endereco","Campo obrigatório.")),m.cidade.value.trim()?p("cidade",""):(n.push("Cidade é obrigatória."),p("cidade","Campo obrigatório.")),l.has(m.estado.value)?p("estado",""):(n.push("Selecione um estado válido."),p("estado","Selecione um UF.")),m.termos.checked?p("termos",""):(n.push("É necessário aceitar os termos."),p("termos","Você deve aceitar os termos.")),u&&(n.length?(u.style.display="block",u.className="alert alert-danger mt-2",u.innerHTML="<strong>Corrija os seguintes pontos:</strong><ul><li>"+n.join("</li><li>")+"</li></ul>"):(u.style.display="block",u.className="alert alert-success mt-2",u.textContent="Cadastro válido! (simulação de envio)"));return 0===n.length}return c.addEventListener("submit",(e=>{e.preventDefault(),v()})),c.addEventListener("input",(e=>{clearTimeout(c._t),c._t=setTimeout(v,200)})),{validateAll:v}}})();
+export const Validate = (() => {
+  const onlyD = (s) => (s||"").replace(/\D/g,"");
+  const emailOk = (s) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(s||"");
+  const telOk = (s) => /^\(\d{2}\)\s\d{5}-\d{4}$/.test(s||"");
+  const cepOk = (s) => /^\d{5}-\d{3}$/.test(s||"");
+
+  const maskCPF = v => onlyD(v).replace(/^(\d{3})(\d{3})(\d{3})(\d{0,2}).*/,(_,a,b,c,d)=> d?`${a}.${b}.${c}-${d}`:`${a}.${b}.${c}`);
+  const maskTel = v => onlyD(v).replace(/^(\d{2})(\d{5})(\d{0,4}).*/,(_,a,b,c)=> c?`(${a}) ${b}-${c}`:`(${a}) ${b}`);
+  const maskCEP = v => onlyD(v).replace(/^(\d{5})(\d{0,3}).*/,(_,a,b)=> b?`${a}-${b}`:a);
+
+  function cpfOk(cpf){
+    const s=onlyD(cpf);
+    if(!s||s.length!==11||/(\d)\1{10}/.test(s))return false;
+    let sum=0; for(let i=0;i<9;i++) sum+=+s[i]*(10-i);
+    let d1=(sum*10)%11; if(d1===10)d1=0; if(d1!==+s[9]) return false;
+    sum=0; for(let i=0;i<10;i++) sum+=+s[i]*(11-i);
+    let d2=(sum*10)%11; if(d2===10)d2=0; return d2===+s[10];
+  }
+
+  const UFs=new Set("AC AL AP AM BA CE DF ES GO MA MT MS MG PA PB PR PE PI RJ RN RS RO RR SC SP SE TO".split(" "));
+
+  function setErr(form,id,msg){
+    const el=form.querySelector(`[data-error-for="${id}"]`);
+    const f=form.querySelector("#"+id);
+    el&&(el.textContent=msg||"");
+    if(f){ f.classList.toggle("is-invalid",!!msg); f.classList.toggle("is-valid",!msg && f.value.trim()!==""); }
+  }
+
+  function idadeOk(str){
+    if(!str) return false;
+    const d=new Date(str); if(isNaN(d)) return false;
+    const n=new Date(); let age=n.getFullYear()-d.getFullYear();
+    const m=n.getMonth()-d.getMonth();
+    if(m<0||(m===0&&n.getDate()<d.getDate())) age--;
+    return age>=16;
+  }
+
+  return {
+    bindForm(form){
+      const a=document.querySelector("#form-alert");
+      const f={nome:form.querySelector("#nome"),email:form.querySelector("#email"),cpf:form.querySelector("#cpf"),
+        telefone:form.querySelector("#telefone"),nascimento:form.querySelector("#nascimento"),cep:form.querySelector("#cep"),
+        endereco:form.querySelector("#endereco"),cidade:form.querySelector("#cidade"),uf:form.querySelector("#uf"),termos:form.querySelector("#termos")};
+
+      f.cpf?.addEventListener("input",e=>e.target.value=maskCPF(e.target.value));
+      f.telefone?.addEventListener("input",e=>e.target.value=maskTel(e.target.value));
+      f.cep?.addEventListener("input",e=>e.target.value=maskCEP(e.target.value));
+
+      function validate(){
+        const errs=[];
+        f.nome.value.trim()?setErr(form,"nome",""):(setErr(form,"nome","Campo obrigatório."),errs.push("Nome"));
+        emailOk(f.email.value)?setErr(form,"email",""):(setErr(form,"email","E-mail inválido."),errs.push("E-mail"));
+        cpfOk(f.cpf.value)?setErr(form,"cpf",""):(setErr(form,"cpf","CPF inválido."),errs.push("CPF"));
+        telOk(f.telefone.value)?setErr(form,"telefone",""):(setErr(form,"telefone","Use (00) 00000-0000."),errs.push("Telefone"));
+        idadeOk(f.nascimento.value)?setErr(form,"nascimento",""):(setErr(form,"nascimento","Idade mínima: 16."),errs.push("Nascimento"));
+        cepOk(f.cep.value)?setErr(form,"cep",""):(setErr(form,"cep","Use 00000-000."),errs.push("CEP"));
+        f.endereco.value.trim()?setErr(form,"endereco",""):(setErr(form,"endereco","Campo obrigatório."),errs.push("Endereço"));
+        f.cidade.value.trim()?setErr(form,"cidade",""):(setErr(form,"cidade","Campo obrigatório."),errs.push("Cidade"));
+        (f.uf.value && UFs.has(f.uf.value.toUpperCase()))?setErr(form,"uf",""):(setErr(form,"uf","UF inválida."),errs.push("UF"));
+        if(f.termos){ f.termos.checked?setErr(form,"termos",""):(setErr(form,"termos","Aceite os termos."),errs.push("Termos")); }
+
+        if(a){
+          if(errs.length){ a.style.display="block"; a.className="alert alert-danger"; a.innerHTML="<strong>Corrija:</strong> "+errs.join(", ")+ "."; }
+          else{ a.style.display="block"; a.className="alert alert-success"; a.textContent="Cadastro válido! (simulação)"; }
+        }
+        return !errs.length;
+      }
+
+      form.addEventListener("submit",e=>{ e.preventDefault(); validate(); });
+      form.addEventListener("input",()=>{ clearTimeout(form._t); form._t=setTimeout(validate,150); });
+    }
+  };
+})();
