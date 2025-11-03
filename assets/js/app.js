@@ -4,26 +4,24 @@ import { ProjetosTemplate } from "./modules/templates.projetos.js";
 import { CadastroTemplate } from "./modules/templates.cadastro.js";
 import { UI } from "./modules/ui.js";
 import { Validate } from "./modules/validate.js";
-import { Storage } from "./modules/storage.js";
 
-const outlet=document.querySelector("#app");
-Router.mount(outlet);
-Router.add("#/",()=>HomeTemplate());
-Router.add("#/projetos",()=>ProjetosTemplate());
-Router.add("#/cadastro",()=>CadastroTemplate());
-Router.start();
+// monta a SPA no #app
+const outlet = document.querySelector("#app");
+if (outlet) {
+  Router.mount(outlet);
+  Router.add("#/", () => HomeTemplate());
+  Router.add("#/projetos", () => ProjetosTemplate());
+  Router.add("#/cadastro", () => CadastroTemplate());
+  Router.start();
+}
 
-UI.bindGlobalUI();
+// liga interações globais (hambúrguer, toast, modal)
+UI.bind();
 
-window.addEventListener("page:rendered",({detail})=>{
-  if(detail.path==="#/cadastro"){
-    const form=document.querySelector("form#cadastro");
-    if(form){
-      Storage.load(form);
-      const { validateAll } = Validate.bindForm(form);
-      form.addEventListener("input",()=>Storage.save(form));
-      form.addEventListener("reset",()=>{ setTimeout(()=>Storage.clear(),0); });
-      setTimeout(()=>validateAll(),10);
-    }
+// quando a rota mudar para cadastro, liga a validação
+window.addEventListener("page:rendered", ({detail})=>{
+  if (detail?.path === "#/cadastro") {
+    const form = document.querySelector("form#cadastro");
+    if (form) Validate.bindForm(form);
   }
 });
