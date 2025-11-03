@@ -3,61 +3,46 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ONG Exemplo — Início</title>
+  <title>ONG Exemplo</title>
   <link rel="stylesheet" href="assets/css/styles.css" />
-  <meta name="description" content="Plataforma de ONG com projetos, doações e voluntariado." />
 </head>
-<body> <body>
-  <!-- header aqui -->
-  <main id="app"></main>
-  <!-- footer aqui -->
-  <div class="toast" role="status" aria-live="polite"></div>
-  <script src="assets/js/main.js" defer></script>
-  <script type="module" src="assets/js/app.js"></script>
-</body>
-
+<body>
+  <header class="site-header">
+    <div class="container navbar">
+      <div class="logo">ONG Exemplo</div>
+      <nav class="desktop-nav" role="navigation" aria-label="Menu principal">
+        <ul style="list-style:none;display:flex;gap:16px;margin:0;padding:0;align-items:center">
+          <li><a data-link href="#/">Início</a></li>
+          <li class="nav-item">
+            <a data-link href="#/projetos">Projetos</a>
+            <div class="dropdown" role="menu" aria-label="submenu projetos">
+              <a data-link href="#/projetos">Educação</a>
+              <a data-link href="#/projetos">Cultura</a>
+              <a data-link href="#/projetos">Empregabilidade</a>
+            </div>
+          </li>
+          <li><a data-link href="#/cadastro">Cadastro</a></li>
+        </ul>
+      </nav>
+      <button class="hamburger" aria-label="Abrir menu móvel"><span></span><span></span><span></span></button>
+    </div>
+    <div class="mobile-drawer" aria-hidden="true">
+      <a data-link href="#/">Início</a>
+      <a data-link href="#/projetos">Projetos</a>
+      <a data-link href="#/cadastro">Cadastro</a>
+    </div>
   </header>
 
-  <main> <main id="app"></main>
-
-    <section class="hero" role="region" aria-label="Destaque">
-      <div class="container">
-        <h1>Impacto que se move</h1>
-        <p>Presença digital profissional para ONGs — projetos, doações e voluntariado.</p>
-        <p class="actions">
-          <a class="button" href="projetos.html">Ver Projetos</a>
-          <a class="button-outline" href="cadastro.html">Quero ser voluntário(a)</a>
-        </p>
-      </div>
-    </section>
-
-    <section class="container mt-3" role="region" aria-labelledby="img-hero">
-      <figure class="card">
-        <img src="assets/img/hero.jpg" alt="Equipe da ONG em ação comunitária" />
-        <figcaption id="img-hero" class="small">Nossa atuação em campo.</figcaption>
-      </figure>
-    </section>
-
-    <section class="container grid grid-3 mt-3" aria-label="Pilares">
-      <article class="card">
-        <h2>Histórico</h2>
-        <p>50+ iniciativas apoiadas em 12 estados.</p>
-      </article>
-      <article class="card">
-        <h2>Equipe</h2>
-        <p>Profissionais e voluntários qualificados.</p>
-      </article>
-      <article class="card">
-        <h2>Transparência</h2>
-        <p>Relatórios periódicos de impacto e contas.</p>
-      </article>
-    </section>
-  </main>
+  <!-- A SPA renderiza SOMENTE aqui -->
+  <main id="app"></main>
 
   <footer role="contentinfo">
     <div class="container">© 2025 ONG Exemplo — Todos os direitos reservados.</div>
   </footer>
 
+  <div class="toast" role="status" aria-live="polite"></div>
   <script src="assets/js/main.js" defer></script>
+  <script type="module" src="assets/js/app.js"></script>
 </body>
 </html>
+
