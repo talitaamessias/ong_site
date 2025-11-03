@@ -1,35 +1,37 @@
 :root{
-  /* Paleta (8+ cores) */
-  --brand-500:#6366f1; --brand-700:#4338ca; --brand-300:#a5b4fc;
-  --accent-500:#06b6d4; --accent-700:#0e7490;
-  --success:#22c55e; --danger:#ef4444; --warning:#f59e0b; --info:#0ea5e9;
-  --neutral-50:#111827; --neutral-200:#334155; --neutral-400:#64748b;
-  --neutral-600:#94a3b8; --neutral-800:#e2e8f0; --neutral-900:#f8fafc;
+  /* Paleta clara */
+  --brand-500:#2563EB; 
+  --brand-700:#1E40AF; 
+  --brand-300:#93C5FD;
+  --accent-500:#0EA5E9; 
+  --accent-700:#0369A1;
+  --success:#22C55E; 
+  --danger:#DC2626; 
+  --warning:#F59E0B; 
+  --info:#0284C7;
+  --neutral-50:#FFFFFF; 
+  --neutral-200:#F1F5F9; 
+  --neutral-400:#CBD5E1;
+  --neutral-600:#475569; 
+  --neutral-800:#1E293B; 
+  --neutral-900:#0F172A;
 
   /* Tema claro */
   --bg:#F8FAFC; 
-  --surface:#FFFFFF;
-  --surface-2:#F1F5F9;
+  --surface:#FFFFFF; 
+  --surface-2:#F1F5F9; 
   --border:rgba(0,0,0,.12);
 
-
-  /* Tipografia (5+ tamanhos) */
+  /* Tipografia */
   --fs-xs:.82rem; --fs-sm:.95rem; --fs-md:1rem; --fs-lg:1.125rem; --fs-xl:1.35rem; --fs-2xl:1.75rem; --fs-3xl:2.25rem; --fs-4xl:3rem;
 
-  /* Espaçamento (escala solicitada) */
+  /* Espaçamento */
   --sp-1:8px; --sp-2:16px; --sp-3:24px; --sp-4:32px; --sp-5:48px; --sp-6:64px;
 
-  /* Largura do container por breakpoint (5 bps) */
+  /* Container */
   --container:1180px;
 }
-@media (max-width:1280px){:root{--container:1080px}}
-@media (max-width:1024px){:root{--container:940px}}
-@media (max-width:960px){:root{--container:860px}}
-@media (max-width:768px){:root{--container:680px}}
-@media (max-width:640px){:root{--container:100%}}
 
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--color-text);font:400 var(--fs-md)/1.65 system-ui,Segoe UI,Roboto,Arial}
 a{text-decoration:none;color:#dbeafe}
 img{max-width:100%;height:auto;display:block;border-radius:12px}
