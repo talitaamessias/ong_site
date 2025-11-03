@@ -1,0 +1,12 @@
+/* Ordem importa: variáveis → base → layout → componentes → utilitários */
+@import url("./variables.css");
+@import url("./base.css");
+@import url("./layout.css");
+@import url("./components.css");
+@import url("./utilities.css");
+
+/* Área opcional para ajustes finais/overrides locais */
+:root {
+  /* exemplo: pode manter o tema escuro aqui se quiser */
+  /* --bg: #0b1220; */
+}
