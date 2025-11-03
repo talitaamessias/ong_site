@@ -6,8 +6,12 @@
   --neutral-50:#111827; --neutral-200:#334155; --neutral-400:#64748b;
   --neutral-600:#94a3b8; --neutral-800:#e2e8f0; --neutral-900:#f8fafc;
 
-  /* Tema escuro */
-  --bg:#0b1220; --surface:#0e1627; --surface-2:#101b33; --border:rgba(148,163,184,.22);
+  /* Tema claro */
+  --bg:#F8FAFC; 
+  --surface:#FFFFFF;
+  --surface-2:#F1F5F9;
+  --border:rgba(0,0,0,.12);
+
 
   /* Tipografia (5+ tamanhos) */
   --fs-xs:.82rem; --fs-sm:.95rem; --fs-md:1rem; --fs-lg:1.125rem; --fs-xl:1.35rem; --fs-2xl:1.75rem; --fs-3xl:2.25rem; --fs-4xl:3rem;
@@ -26,7 +30,7 @@
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--neutral-900);font:400 var(--fs-md)/1.65 system-ui,Segoe UI,Roboto,Arial}
+body{margin:0;background:var(--bg);color:var(--color-text);font:400 var(--fs-md)/1.65 system-ui,Segoe UI,Roboto,Arial}
 a{text-decoration:none;color:#dbeafe}
 img{max-width:100%;height:auto;display:block;border-radius:12px}
 h1{font-size:var(--fs-4xl);margin:0 0 var(--sp-2)}
@@ -93,12 +97,12 @@ hr{border:0;border-top:1px solid var(--border);margin:var(--sp-4) 0}
 .hero{padding:var(--sp-6) 0 var(--sp-4);border-bottom:1px solid var(--border)}
 
 /* ====== Cards/Badges ====== */
-.card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:var(--sp-3);box-shadow:0 6px 20px rgba(0,0,0,.2)}
+.card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:var(--sp-3);box-shadow:0 6px 20px rgba(0,0,0,.08)}
 .badge{display:inline-block;padding:.25rem .6rem;border-radius:999px;font-size:var(--fs-xs);
   border:1px solid var(--border);background:rgba(255,255,255,.04);color:#dbeafe}
 
 /* ====== Formulários ====== */
-input,select,textarea{width:100%;border:1px solid var(--border);border-radius:12px;padding:.75rem .85rem;background:#0a1324;color:#e5e7eb}
+input,select,textarea{width:100%;border:1px solid var(--border);border-radius:12px;padding:.75rem .85rem;background:#fff;color:#0F172A}
 input::placeholder,textarea::placeholder{color:#8091aa}
 input:focus,select:focus,textarea:focus{outline:2px solid rgba(99,102,241,.35);border-color:#a5b4fc}
 .invalid-msg{color:#ffb4b4;font-size:.9rem;margin-top:.3rem}
@@ -112,7 +116,7 @@ input:focus,select:focus,textarea:focus{outline:2px solid rgba(99,102,241,.35);b
 .toast{position:fixed;right:var(--sp-3);bottom:var(--sp-3);background:#0b1220;border:1px solid var(--border);color:#e5e7eb;
   padding:.85rem 1rem;border-radius:12px;box-shadow:0 18px 60px rgba(0,0,0,.45);opacity:0;transform:translateY(10px);transition:all .25s}
 .toast.show{opacity:1;transform:translateY(0)}
-.modal-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);padding:20px}
+.modal-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);padding:20px;z-index:999;}
 .modal-backdrop.open{display:flex;align-items:center;justify-content:center}
 .modal{max-width:640px;width:100%;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:var(--sp-2)}
 
