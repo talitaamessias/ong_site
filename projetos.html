@@ -1,2 +1,95 @@
-<!doctype html><meta http-equiv="refresh" content="0; url=./#/projetos">
-<link rel="stylesheet" href="assets/css/styles.css" />
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ONG Exemplo — Projetos</title>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container navbar">
+      <div class="logo">ONG Exemplo</div>
+      <nav class="desktop-nav" role="navigation" aria-label="Menu principal">
+        <ul style="list-style:none;display:flex;gap:16px;margin:0;padding:0;align-items:center">
+          <li><a href="index.html">Início</a></li>
+          <li class="nav-item">
+            <a href="projetos.html" aria-current="page">Projetos</a>
+            <div class="dropdown" role="menu">
+              <a href="#educacao">Educação</a>
+              <a href="#cultura">Cultura</a>
+              <a href="#emprego">Empregabilidade</a>
+            </div>
+          </li>
+          <li><a href="cadastro.html">Cadastro</a></li>
+        </ul>
+      </nav>
+      <button class="hamburger" aria-label="Abrir menu móvel"><span></span><span></span><span></span></button>
+    </div>
+    <div class="mobile-drawer" aria-hidden="true">
+      <a href="index.html">Início</a>
+      <a href="projetos.html">Projetos</a>
+      <a href="cadastro.html">Cadastro</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>Projetos Sociais</h1>
+
+    <figure class="card mt-2">
+      <img src="assets/img/projetos.jpg" alt="Apresentação de projetos sociais" />
+      <figcaption class="small">Nossos resultados e impacto.</figcaption>
+    </figure>
+
+    <div class="grid grid-3 mt-3">
+      <article class="card" id="educacao">
+        <span class="badge">Educação</span>
+        <h2>Educação para o Futuro</h2>
+        <p>Capacitação tecnológica para jovens.</p>
+      </article>
+      <article class="card" id="cultura">
+        <span class="badge">Cultura</span>
+        <h2>Cultura que Transforma</h2>
+        <p>Oficinas artísticas itinerantes.</p>
+      </article>
+      <article class="card" id="emprego">
+        <span class="badge">Empregabilidade</span>
+        <h2>Primeiro Emprego</h2>
+        <p>Mentorias e encaminhamento.</p>
+      </article>
+    </div>
+
+    <section class="card mt-3" aria-label="Doações e transparência">
+      <h2>Transparência e Doações</h2>
+      <p><strong>Campanha:</strong> Laboratório de Informática — <em>Meta R$ 50.000</em></p>
+      <p class="actions">
+        <button class="button" data-toast="donate">Doar agora</button>
+        <button class="button-outline" data-modal="open">Prestação de contas</button>
+      </p>
+    </section>
+  </main>
+
+  <div class="modal-backdrop" role="dialog" aria-modal="true" aria-label="Relatórios de Transparência">
+    <div class="modal card">
+      <header class="flex items-center justify-between">
+        <h3>Relatórios de Transparência</h3>
+        <button class="btn-ghost" data-modal="close" aria-label="Fechar">✕</button>
+      </header>
+      <p class="text-muted">Relatórios anuais e auditorias (simulado).</p>
+      <div class="actions">
+        <a class="button-outline" href="#">Relatório 2023</a>
+        <a class="button-outline" href="#">Relatório 2024</a>
+      </div>
+      <div class="text-right mt-2">
+        <button class="button" data-modal="close">Fechar</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">© 2025 ONG Exemplo</div>
+  </footer>
+
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>
