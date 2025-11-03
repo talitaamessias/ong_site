@@ -1,1 +1,21 @@
 :root{--brand-500:#6366f1;--brand-700:#4338ca;--brand-300:#a5b4fc;--accent-500:#06b6d4;--accent-700:#0e7490;--success:#22c55e;--danger:#ef4444;--warning:#f59e0b;--info:#0ea5e9;--neutral-50:#111827;--neutral-200:#334155;--neutral-400:#64748b;--neutral-500:#94a3b8;--neutral-700:#cbd5e1;--neutral-900:#f8fafc;--bg:#0b1220;--surface:#0e1627;--surface-2:#0f1b30;--border:rgba(148,163,184,.25);--fs-xs:.8125rem;--fs-sm:.9375rem;--fs-md:1rem;--fs-lg:1.125rem;--fs-xl:1.375rem;--fs-2xl:1.75rem;--fs-3xl:2.25rem;--fs-4xl:3rem;--sp-1:8px;--sp-2:16px;--sp-3:24px;--sp-4:32px;--sp-5:48px;--sp-6:64px;--radius:16px;--radius-lg:22px;--container:1180px}@media (max-width:1280px){:root{--container:1080px}}@media (max-width:1024px){:root{--container:940px}}@media (max-width:960px){:root{--container:860px}}@media (max-width:768px){:root{--container:680px}}@media (max-width:640px){:root{--container:100%}}
+:root {
+  --color-bg: #F8FAFC;
+  --color-text: #0F172A;
+  --color-primary: #2563EB;
+  --color-secondary: #0EA5E9;
+  --color-accent: #10B981;
+  --color-neutral: #64748B;
+  --color-neutral-light: #E2E8F0;
+  --color-neutral-dark: #334155;
+  --color-danger: #DC2626;
+}
+
+/* Acessibilidade: alto contraste */
+@media (prefers-contrast: more) {
+  :root {
+    --color-bg: #000000;
+    --color-text: #FFFFFF;
+    --color-primary: #FFCC00;
+  }
+}
