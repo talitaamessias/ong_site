@@ -1,1 +1,30 @@
-export const Router=(()=>{const e=new Map;let t=null;function n(){const n=window.location.hash||"#/";const[s]=n.split("?");const o=e.get(s)||e.get("#/");o&&o().then?o().then((e=>{t&&(t.innerHTML=e),window.scrollTo({top:0,behavior:"instant"}),window.dispatchEvent(new CustomEvent("page:rendered",{detail:{path:s}}))})):t&&(t.innerHTML=o||"",window.scrollTo({top:0,behavior:"instant"}),window.dispatchEvent(new CustomEvent("page:rendered",{detail:{path:s}})))}return{mount:e=>{t=e},add:(t,n)=>{e.set(t,n)},start:()=>{window.addEventListener("hashchange",n),document.addEventListener("click",(e=>{const t=e.target.closest("a[data-link]");t&&(e.preventDefault(),window.location.hash=t.getAttribute("href"))})),n()}}})();
+export const Router = (() => {
+  const routes = new Map();
+  let outlet = null;
+
+  function render() {
+    const path = (location.hash || "#/").split("?")[0];
+    const view = routes.get(path) || routes.get("#/");
+    Promise.resolve(view && view()).then((html) => {
+      if (outlet) outlet.innerHTML = html || "";
+      window.scrollTo(0, 0);
+      window.dispatchEvent(new CustomEvent("page:rendered", { detail: { path } }));
+    });
+  }
+
+  return {
+    mount: (el) => (outlet = el),
+    add: (path, fn) => routes.set(path, fn),
+    start: () => {
+      addEventListener("hashchange", render);
+      document.addEventListener("click", (e) => {
+        const a = e.target.closest("a[data-link]");
+        if (a) {
+          e.preventDefault();
+          location.hash = a.getAttribute("href");
+        }
+      });
+      render();
+    },
+  };
+})();
