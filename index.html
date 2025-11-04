@@ -3,42 +3,57 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ONG Caminhos de Futuro</title>
+  <title>ONG Caminhos de Futuro — Início</title>
   <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
- develop
 <body>
-<body> 
- main
-  <a class="skip-link" href="#app">Pular para conteúdo principal</a>
-  <header class="site-header">
+  <a class="skip-link" href="#conteudo">Pular para conteúdo principal</a>
+
+  <header class="site-header" role="banner">
     <div class="container navbar">
-      <div class="logo">ONG Caminhos de Futuro</div>
+      <div class="logo" aria-label="Logotipo da ONG">ONG Caminhos de Futuro</div>
       <nav class="desktop-nav" role="navigation" aria-label="Menu principal">
         <ul style="list-style:none;display:flex;gap:16px;margin:0;padding:0;align-items:center">
-          <li><a data-link href="#/">Início</a></li>
+          <li><a href="index.html">Início</a></li>
           <li class="nav-item">
-            <a data-link href="#/projetos">Projetos</a>
+            <a href="projetos.html">Projetos</a>
             <div class="dropdown" role="menu" aria-label="submenu projetos">
-              <a data-link href="#/projetos">Educação</a>
-              <a data-link href="#/projetos">Cultura</a>
-              <a data-link href="#/projetos">Empregabilidade</a>
+              <a href="projetos.html#educacao">Educação</a>
+              <a href="projetos.html#cultura">Cultura</a>
+              <a href="projetos.html#emprego">Empregabilidade</a>
             </div>
           </li>
-          <li><a data-link href="#/cadastro">Cadastro</a></li>
+          <li><a href="cadastro.html">Cadastro</a></li>
         </ul>
       </nav>
       <button class="hamburger" aria-label="Abrir menu móvel"><span></span><span></span><span></span></button>
     </div>
+
     <div class="mobile-drawer" aria-hidden="true">
-      <a data-link href="#/">Início</a>
-      <a data-link href="#/projetos">Projetos</a>
-      <a data-link href="#/cadastro">Cadastro</a>
+      <a href="index.html">Início</a>
+      <a href="projetos.html">Projetos</a>
+      <a href="cadastro.html">Cadastro</a>
     </div>
   </header>
 
-  <!-- A SPA renderiza SOMENTE aqui -->
-  <main id="app"></main>
+  <main id="conteudo">
+    <section class="hero">
+      <div class="container">
+        <h1>ONG Caminhos de Futuro</h1>
+        <p class="small">Nossa missão é transformar realidades com transparência, impacto e acessibilidade social.</p>
+        <p class="actions">
+          <a class="button" href="projetos.html">Ver projetos</a>
+          <a class="button-outline" href="cadastro.html">Quero ser voluntário(a)</a>
+        </p>
+      </div>
+    </section>
+
+    <section class="container grid grid-3 mt-3">
+      <article class="card"><h2>Transparência</h2><p>Prestação de contas clara e auditável.</p></article>
+      <article class="card"><h2>Impacto</h2><p>50+ iniciativas em 12 estados brasileiros.</p></article>
+      <article class="card"><h2>Comunidade</h2><p>Rede de voluntários engajados e capacitados.</p></article>
+    </section>
+  </main>
 
   <footer role="contentinfo">
     <div class="container">© 2025 ONG Caminhos de Futuro — Todos os direitos reservados.</div>
@@ -46,7 +61,6 @@
 
   <div class="toast" role="status" aria-live="polite"></div>
   <script src="assets/js/main.js" defer></script>
-  <script type="module" src="assets/js/app.js"></script>
 </body>
 </html>
 
