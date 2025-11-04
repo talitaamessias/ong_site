@@ -10,9 +10,3 @@
   /* exemplo: pode manter o tema escuro aqui se quiser */
   /* --bg: #0b1220; */
 }
-/* Tema claro */
-  --bg:#F8FAFC; 
-  --surface:#FFFFFF;
-  --surface-2:#F1F5F9;
-  --border:rgba(0,0,0,.12);
-body{margin:0;background:var(--bg);color:var(--color-text);font:400 var(--fs-md)/1.65 system-ui,Segoe UI,Roboto,Arial}
